@@ -1,0 +1,12 @@
+/buildtest
+/data/mysql/*
+.DS_Store
+.idea
+/logs/apache2/*
+storage/uploads/*
+/www/vendor/
+
+composer.phar
+.env
+!.gitkeep
+.log
