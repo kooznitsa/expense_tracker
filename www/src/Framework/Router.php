@@ -7,6 +7,7 @@ namespace Framework;
 class Router
 {
     private array $routes = [];
+    private array $middlewares = [];
 
     /*
      * Adds a path to the array of paths.
@@ -31,7 +32,7 @@ class Router
         return preg_replace("#[/]{2,}#", "/", $path);
     }
 
-    public function dispatch(string $path, string $method): void
+    public function dispatch(string $path, string $method, ?Container $container = null): void
     {
         $path = $this->normalizePath($path);
         $method = strtoupper($method);
@@ -42,9 +43,23 @@ class Router
             }
 
             [$class, $function] = $route["controller"];
+            $controllerInstance = $container ? $container->resolve($class) : new $class;
 
-            $controllerInstance = new $class;
-            $controllerInstance->$function();
+            $action = fn() => $controllerInstance->$function();
+
+            foreach ($this->middlewares as $middleware) {
+                $middlewareInstance = $container ? $container->resolve($middleware) : new $middleware;
+                $action = fn() => $middlewareInstance->process($action);
+            }
+
+            $action();
+
+            return;
         }
+    }
+
+    public function addMiddleware(string $middleware): void
+    {
+        $this->middlewares[] = $middleware;
     }
 }
