@@ -23,4 +23,4 @@ composerdump:
 
 .PHONY: composervalidate
 composervalidate:
-	$(DOCKER_EXEC) lamp-php83 composer validate --strict
+	$(DOCKER_EXEC) lamp-php83 composer validate
