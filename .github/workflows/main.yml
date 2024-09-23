@@ -27,4 +27,4 @@ jobs:
       - name: Validate composer.json
         run: |
           make composerdump
-          make composervalidate --strict
+          make composervalidate
