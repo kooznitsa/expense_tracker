@@ -8,7 +8,9 @@ class Router
 {
     private array $routes = [];
 
-    /* Adds a path to the array of paths. */
+    /*
+     * Adds a path to the array of paths.
+     */
     public function add(string $method, string $path, array $controller): void
     {
         $path  = $this->normalizePath($path);
@@ -20,7 +22,9 @@ class Router
         ];
     }
 
-    /* Replaces slashes if they exist, wraps a path into slashes. */
+    /*
+     * Replaces slashes if they exist, wraps a path into slashes.
+     */
     private function normalizePath(string $path): string
     {
         $path = "/" . trim($path, "/") . "/";
