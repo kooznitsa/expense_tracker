@@ -7,12 +7,12 @@ git clone https://github.com/kooznitsa/expense_tracker.git
 cd expense_tracker/
 cp sample.env .env
 // modify .env if needed
-docker compose up -d --build
+make run
 // visit localhost:443
 ```
 
 ## Generate /vendor
 
 ```shell
-docker exec -it lamp-php83 composer dump-autoload
+make composerdump
 ```

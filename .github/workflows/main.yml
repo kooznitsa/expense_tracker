@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install make
+        run: apk add --no-cache make
+
+      - name: Create .env
+        run: cp sample.env .env
+
+      - name: Validate composer.json
+        run: |
+          make composerdump
+          make composervalidate
+
+      - name: Run Docker Compose
+        run: make run
