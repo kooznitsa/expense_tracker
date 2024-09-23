@@ -7,3 +7,8 @@ RewriteRule ^(.*)$ /public/$1 [L,QSA]
 # Remove .php from path
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^.?]+)$ %{REQUEST_URI}.php [L]
+
+# Start scripts at index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /index.php [L]
