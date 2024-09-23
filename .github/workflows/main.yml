@@ -13,13 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install make
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install make
+
       - name: Create .env
         run: cp sample.env .env
 
       - name: Run Docker Compose
-        run: docker compose up -d --build
+        run: make run
 
       - name: Validate composer.json
         run: |
-          docker exec -it lamp-php83 bash composer dump-autoload
-          docker exec -it lamp-php83 bash validate --strict
+          make composerdump
+          make composervalidate --strict

@@ -1,7 +1,7 @@
 include .env
 
 DOCKER_COMPOSE := docker compose
-DOCKER_EXEC := docker exec -it
+DOCKER_EXEC := docker exec
 
 # -------------- DOCKER --------------
 .PHONY: run
@@ -23,4 +23,4 @@ composerdump:
 
 .PHONY: composervalidate
 composervalidate:
-	$(DOCKER_EXEC) lamp-php83 bash validate --strict
+	$(DOCKER_EXEC) lamp-php83 bash composer validate --strict
