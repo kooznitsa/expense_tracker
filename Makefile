@@ -15,12 +15,12 @@ stop:
 # -------------- COMPOSER --------------
 .PHONY: composerinit
 composerinit:
-	$(DOCKER_EXEC) lamp-php83 bash composer init
+	$(DOCKER_EXEC) lamp-php83 composer init
 
 .PHONY: composerdump
 composerdump:
-	$(DOCKER_EXEC) lamp-php83 bash composer dump-autoload
+	$(DOCKER_EXEC) lamp-php83 composer dump-autoload
 
 .PHONY: composervalidate
 composervalidate:
-	$(DOCKER_EXEC) lamp-php83 bash composer validate --strict
+	$(DOCKER_EXEC) lamp-php83 composer validate --strict

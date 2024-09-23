@@ -8,11 +8,6 @@ cd expense_tracker/
 cp sample.env .env
 // modify .env if needed
 make run
-// visit localhost:443
-```
-
-## Generate /vendor
-
-```shell
 make composerdump
+// visit localhost:443
 ```
