@@ -8,6 +8,6 @@ cd expense_tracker/
 cp sample.env .env
 // modify .env if needed
 make run
-make composerdump
+make install
 // visit localhost:443
 ```

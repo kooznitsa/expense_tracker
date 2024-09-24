@@ -24,7 +24,8 @@ jobs:
       - name: Run Docker Compose
         run: make run
 
+      - name: Install dependencies
+        run: make install
+
       - name: Validate composer.json
-        run: |
-          make composerdump
-          make composervalidate
+        run: make validate
