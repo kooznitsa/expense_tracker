@@ -16,7 +16,6 @@ run:
 stop:
 	$(DOCKER_COMPOSE) down
 
-
 # -------------- COMPOSER --------------
 # Initializes composer
 .PHONY: init
@@ -44,3 +43,9 @@ validate:
 .PHONY: database
 database:
 	$(DOCKER_EXEC) $(BACKEND_CONTAINER) composer run-script database
+
+
+# -------------- SETUP --------------
+# Launch the project from scratch
+.PHONY: setup
+setup: run install database

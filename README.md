@@ -6,8 +6,7 @@
 git clone https://github.com/kooznitsa/expense_tracker.git
 cd expense_tracker/
 cp sample.env .env
-// modify .env if needed
-make run
-make install
-// visit localhost:443
+# modify .env if needed
+make setup
+# visit localhost:443
 ```
