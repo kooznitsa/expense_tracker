@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Framework\Validator;
-use Framework\Rules\{EmailRule, MatchRule, MaxRule, MinRule, RequiredRule, UrlRule};
+use Framework\Rules\{EmailRule, MatchRule, MaxRule, MinRule, PasswordRule, RequiredRule, UrlRule};
 
 class ValidatorService
 {
@@ -16,6 +16,7 @@ class ValidatorService
         $this->validator->add("match", new MatchRule());
         $this->validator->add("max", new MaxRule());
         $this->validator->add("min", new MinRule());
+        $this->validator->add("password", new PasswordRule());
         $this->validator->add("required", new RequiredRule());
         $this->validator->add("url", new UrlRule());
     }
@@ -27,7 +28,7 @@ class ValidatorService
             "age" => ["required", "min:18", "max:120"],
             "country" => ["required"],
             "socialMediaURL" => ["required", "url"],
-            "password" => ["required"],
+            "password" => ["required", "password"],
             "confirmPassword" => ["required", "match:password"],
             "tos" => ["required"],
         ]);
