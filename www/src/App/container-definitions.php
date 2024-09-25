@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Framework\{Database, TemplateEngine};
+use Framework\{Container, Database, TemplateEngine};
 use App\Config\Paths;
-use App\Services\ValidatorService;
+use App\Services\{UserService, ValidatorService};
 
 return [
     TemplateEngine::class => fn() => new TemplateEngine(Paths::VIEW),
@@ -17,5 +17,10 @@ return [
             "dbname" => $_ENV["MYSQL_DATABASE"],
         ],
         $_ENV["MYSQL_USER"],
-        $_ENV["MYSQL_PASSWORD"]),
+        $_ENV["MYSQL_PASSWORD"],
+    ),
+    UserService::class => function (Container $container) {
+        $db = $container->get(Database::class);
+        return new UserService($db);
+    },
 ];

@@ -14,7 +14,7 @@
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder="john@example.com"
             />
-            <?php if(array_key_exists("email", $errors)) : ?>
+            <?php if (array_key_exists("email", $errors)) : ?>
             <div class="bg-gray-100 mt-2 p-2 text-red-500">
                 <?php echo e($errors["email"][0]); ?>
             </div>
@@ -30,7 +30,7 @@
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder=""
             />
-            <?php if(array_key_exists("age", $errors)) : ?>
+            <?php if (array_key_exists("age", $errors)) : ?>
                 <div class="bg-gray-100 mt-2 p-2 text-red-500">
                     <?php echo e($errors["age"][0]); ?>
                 </div>
@@ -47,7 +47,7 @@
                 <option value="Canada" <?php echo $oldFormData['country'] === 'Canada' ? 'selected': ''; ?>>Canada</option>
                 <option value="Mexico" <?php echo $oldFormData['country'] === 'Mexico' ? 'selected': ''; ?> >Mexico</option>
             </select>
-            <?php if(array_key_exists("country", $errors)) : ?>
+            <?php if (array_key_exists("country", $errors)) : ?>
                 <div class="bg-gray-100 mt-2 p-2 text-red-500">
                     <?php echo e($errors["country"][0]); ?>
                 </div>
@@ -63,7 +63,7 @@
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder=""
             />
-            <?php if(array_key_exists("socialMediaURL", $errors)) : ?>
+            <?php if (array_key_exists("socialMediaURL", $errors)) : ?>
                 <div class="bg-gray-100 mt-2 p-2 text-red-500">
                     <?php echo e($errors["socialMediaURL"][0]); ?>
                 </div>
@@ -78,7 +78,7 @@
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder=""
             />
-            <?php if(array_key_exists("password", $errors)) : ?>
+            <?php if (array_key_exists("password", $errors)) : ?>
                 <div class="bg-gray-100 mt-2 p-2 text-red-500">
                     <?php echo e($errors["password"][0]); ?>
                 </div>
@@ -93,7 +93,7 @@
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 placeholder=""
             />
-            <?php if(array_key_exists("confirmPassword", $errors)) : ?>
+            <?php if (array_key_exists("confirmPassword", $errors)) : ?>
                 <div class="bg-gray-100 mt-2 p-2 text-red-500">
                     <?php echo e($errors["confirmPassword"][0]); ?>
                 </div>
@@ -105,14 +105,14 @@
                 <div>
                     <label class="inline-flex items-center">
                         <input
-                            value="<?php echo $oldFormData['tos'] ?? false ? 'checked' : ''; ?>"
+                           <?php echo $oldFormData['tos'] ?? false ? 'checked' : ''; ?>
                             name="tos"
                             class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
                             type="checkbox"
                         />
                         <span class="ml-2">I accept the terms of service.</span>
                     </label>
-                    <?php if(array_key_exists("tos", $errors)) : ?>
+                    <?php if (array_key_exists("tos", $errors)) : ?>
                         <div class="bg-gray-100 mt-2 p-2 text-red-500">
                             <?php echo e($errors["tos"][0]); ?>
                         </div>
