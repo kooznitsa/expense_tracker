@@ -6,14 +6,21 @@ namespace App\Config;
 
 use Framework\App;
 use App\Middleware\{
+    CsrfGuardMiddleware,
+    CsrfTokenMiddleware,
     FlashMiddleware,
     SessionMiddleware,
     TemplateDataMiddleware,
     ValidationExceptionMiddleware,
 };
 
+/*
+ * Order of middleware is important.
+ */
 function registerMiddleware(App $app): void
 {
+    $app->addMiddleware(CsrfGuardMiddleware::class);
+    $app->addMiddleware(CsrfTokenMiddleware::class);
     $app->addMiddleware(TemplateDataMiddleware::class);
     $app->addMiddleware(ValidationExceptionMiddleware::class);
     $app->addMiddleware(FlashMiddleware::class);
