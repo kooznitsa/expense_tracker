@@ -42,4 +42,9 @@ class Database
     {
         return $this->stmt->fetchColumn();
     }
+
+    public function find(): mixed
+    {
+        return $this->stmt->fetch();
+    }
 }
