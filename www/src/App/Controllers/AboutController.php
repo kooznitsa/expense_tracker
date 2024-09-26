@@ -8,7 +8,10 @@ use Framework\TemplateEngine;
 
 class AboutController
 {
-    public function __construct(private TemplateEngine $view) {}
+    public function __construct(
+        private TemplateEngine $view,
+    ) {
+    }
 
     public function about(): void
     {

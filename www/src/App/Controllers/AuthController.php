@@ -13,7 +13,8 @@ class AuthController
         private TemplateEngine $view,
         private ValidatorService $validatorService,
         private UserService $userService,
-    ) {}
+    ) {
+    }
 
     public function registerView(): void
     {
