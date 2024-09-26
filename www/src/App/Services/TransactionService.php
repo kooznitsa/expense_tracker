@@ -13,13 +13,6 @@ class TransactionService
     ) {
     }
 
-    public function home(): void
-    {
-        echo $this->view->render("index.php", [
-            "title" => "Home page",
-        ]);
-    }
-
     public function create(array $formData): void
     {
         $this->db->query(
@@ -34,20 +27,33 @@ class TransactionService
         );
     }
 
-    public function getUserTransactions(): array
+    public function getUserTransactions(int $length, int $offset): array
     {
         $searchTerm = addcslashes($_GET["s"] ?? "", "%_");
+        $params = [
+            "userId" => $_SESSION["user"],
+            "description" => "%{$searchTerm}%",
+        ];
 
-        return $this->db->query(
+        $transactions = $this->db->query(
             "SELECT *, DATE_FORMAT(date, '%Y-%m-%d') as formatted_date
             FROM transactions
             WHERE user_id = :userId
             AND description LIKE :description
-            ORDER BY date DESC",
-            [
-                "userId" => $_SESSION["user"],
-                "description" => "%{$searchTerm}%",
-            ],
+            ORDER BY date DESC
+            LIMIT $length OFFSET $offset",
+            $params,
         )->findAll();
+
+        $transactionCount = $this->db->query(
+            "SELECT COUNT(*)
+            FROM transactions
+            WHERE user_id = :userId
+            AND description LIKE :description
+            ORDER BY date DESC",
+            $params,
+        )->count();
+
+        return [$transactions, $transactionCount];
     }
 }
