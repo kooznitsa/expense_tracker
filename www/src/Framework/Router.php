@@ -32,11 +32,16 @@ class Router
         $method = strtoupper($_POST["_METHOD"] ?? $method);
 
         foreach ($this->routes as $route) {
-            [$condition, $params] = $this->extractParams($route, $path, $method);
-
-            if ($condition) {
+            if (
+                !preg_match("#^{$route['regexPath']}$#", $path, $paramValues) ||
+                $route['method'] !== $method
+            ) {
                 continue;
             }
+
+            array_shift($paramValues);
+            preg_match_all("#{([^/]+)}#", $route["path"], $paramKeys);
+            $params = array_combine($paramKeys[1], $paramValues);
 
             [$class, $function] = $route["controller"];
             $controllerInstance = $container ? $container->resolve($class) : new $class;
@@ -72,19 +77,5 @@ class Router
     {
         $path = "/" . trim($path, "/") . "/";
         return preg_replace("#[/]{2,}#", "/", $path);
-    }
-
-    /*
-     * Extracts path parameters.
-     */
-    private function extractParams(array $route, string $path, string $method): array
-    {
-        $condition = !preg_match("#^{$route['regexPath']}$#", $path, $paramValues) ||
-            $route['method'] !== $method;
-
-        array_shift($paramValues);
-        preg_match_all("#{([^/]+)}#", $route["path"], $paramKeys);
-
-        return [$condition, array_combine($paramKeys[1], $paramValues)];
     }
 }

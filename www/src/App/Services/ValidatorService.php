@@ -56,4 +56,9 @@ class ValidatorService
             "date" => ["required", "date:Y-m-d"],
         ]);
     }
+
+    public function validateFile(?array $file): void
+    {
+        $this->validator->validateFile($file);
+    }
 }
