@@ -22,7 +22,7 @@ class TransactionService
                 "user_id" => $_SESSION["user"],
                 "description" => $formData["description"],
                 "amount" => $formData["amount"],
-                "date" => "{$formData['date']} 00:00:00",
+                "date" => $this->formatDate($formData["date"]),
             ],
         );
     }
@@ -55,5 +55,39 @@ class TransactionService
         )->count();
 
         return [$transactions, $transactionCount];
+    }
+
+    public function getUserTransaction(string $id): mixed
+    {
+        return $this->db->query(
+            "SELECT *, DATE_FORMAT(date, '%Y-%m-%d') as formatted_date
+            FROM transactions
+            WHERE id = :id AND user_id = :userId",
+            [
+                "id" => $id,
+                "userId" => $_SESSION["user"],
+            ]
+        )->find();
+    }
+
+    public function update(array $formData, int $id): void
+    {
+        $this->db->query(
+            "UPDATE transactions
+            SET description = :description, amount = :amount, date = :date
+            WHERE id = :id AND user_id = :userId",
+            [
+                "description" => $formData["description"],
+                "amount" => $formData["amount"],
+                "date" => $this->formatDate($formData["date"]),
+                "id" => $id,
+                "userId" => $_SESSION["user"],
+            ]
+        );
+    }
+
+    private function formatDate(string $date): string
+    {
+        return "$date 00:00:00";
     }
 }
