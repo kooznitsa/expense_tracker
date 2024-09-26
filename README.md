@@ -10,3 +10,9 @@ cp sample.env .env
 make setup
 # visit localhost:443
 ```
+
+## Add data
+
+1. Register as a new user: http://localhost:443/register.
+
+2. Add transactions by clicking "New transaction".
