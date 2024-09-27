@@ -55,4 +55,9 @@ class App
 
         return $this;
     }
+
+    public function setErrorHandler(array $controller): void
+    {
+        $this->router->setErrorHandler($controller);
+    }
 }

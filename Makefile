@@ -10,6 +10,7 @@ BACKEND_CONTAINER := lamp-php83
 .PHONY: run
 run:
 	$(DOCKER_COMPOSE) up -d --build
+	$(DOCKER_EXEC) $(BACKEND_CONTAINER) chmod -R 777 /var/www/html/storage
 
 # Removes containers
 .PHONY: stop

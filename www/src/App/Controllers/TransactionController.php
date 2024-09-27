@@ -20,7 +20,7 @@ class TransactionController
     {
         $page = $_GET["p"] ?? 1;
         $page = (int) $page;
-        $length = 3;
+        $length = 4;
         $offset = ($page - 1) * $length;
         $searchTerm = $_GET["s"] ?? null;
         [$transactions, $transactionCount] = $this->transactionService->getUserTransactions($length, $offset);
