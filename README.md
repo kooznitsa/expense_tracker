@@ -16,3 +16,7 @@ make setup
 1. Register as a new user: http://localhost:443/register.
 
 2. Add transactions by clicking "New transaction".
+
+[![screencapture-localhost-443-2024-09-27-18-10-26.png](https://i.postimg.cc/h40PQzSZ/screencapture-localhost-443-2024-09-27-18-10-26.png)](https://postimg.cc/LhnMrsgj)
+
+[![Screenshot-2024-09-27-180733.png](https://i.postimg.cc/zXtzpsHn/Screenshot-2024-09-27-180733.png)](https://postimg.cc/1fF13YHt)
