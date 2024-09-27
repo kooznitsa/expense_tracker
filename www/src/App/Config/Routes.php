@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Config;
 
 use Framework\App;
-use App\Controllers\{AboutController, AuthController, ReceiptController, TransactionController};
+use App\Controllers\{
+    AboutController, AuthController, DiagramController,
+    ErrorController, ReceiptController, TransactionController,
+};
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware};
 
 CONST AUTH = AuthRequiredMiddleware::class;
@@ -29,4 +32,7 @@ function registerRoutes(App $app): void
     $app->post("/transaction/{transaction}/receipt", [ReceiptController::class, "upload"])->add(AUTH);
     $app->get("/transaction/{transaction}/receipt/{receipt}", [ReceiptController::class, "download"])->add(AUTH);
     $app->delete("/transaction/{transaction}/receipt/{receipt}", [ReceiptController::class, "delete"])->add(AUTH);
+    $app->get("/diagram", [DiagramController::class, "diagram"])->add(AUTH);
+
+    $app->setErrorHandler([ErrorController::class, "notFound"]);
 }

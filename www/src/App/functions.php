@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Framework\Enums\Http;
+
 /*
  * Prints a variable in user-friendly manner.
  */
@@ -27,6 +29,6 @@ function e(mixed $value): string
 function redirectTo(string $path): void
 {
     header("Location: $path");
-    http_response_code(302);
+    http_response_code(Http::REDIRECT_STATUS_CODE->value);
     exit;
 }
